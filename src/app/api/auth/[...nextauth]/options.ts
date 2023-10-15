@@ -15,16 +15,13 @@ export const options: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
-        const res = await fetch("http://localhost:3000/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(credentials),
-        });
-        const user = await res.json();
-        if (res.ok && user) return user;
-        return null;
+        const user = { username: "eslamicoo", password: "671973" };
+        if (
+          credentials?.username === user.username &&
+          credentials?.password === user.password
+        )
+          return user;
+        else return null;
       },
     }),
   ],
